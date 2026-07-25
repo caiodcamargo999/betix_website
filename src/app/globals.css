@@ -46,6 +46,8 @@ header {
   display: block;
   width: 235px;
   max-width: 65vw;
+  height: auto;
+  object-fit: contain;
   margin: 0 auto;
   filter: drop-shadow(0 0 14px rgba(18, 198, 244, 0.12));
 }
