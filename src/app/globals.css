@@ -1,0 +1,390 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #001426;
+  --navy-soft: #03243b;
+  --cyan: #12c6f4;
+  --blue: #1685ff;
+  --white: #ffffff;
+  --muted: #91a7ba;
+  --orange: #ff6b00;
+  --whatsapp: #25d366;
+  --line: rgba(24, 198, 244, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, "Noto Sans Hebrew", sans-serif;
+  color: var(--white);
+  background:
+    radial-gradient(circle at 50% 10%, rgba(18, 198, 244, 0.14), transparent 30%),
+    linear-gradient(180deg, #00101f 0%, var(--navy) 100%);
+  border-top: 2px solid var(--orange);
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: min(calc(100% - 34px), 1000px);
+  margin: 0 auto;
+}
+
+header {
+  padding: 22px 0 0;
+}
+
+.logo {
+  display: block;
+  width: 235px;
+  max-width: 65vw;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 14px rgba(18, 198, 244, 0.12));
+}
+
+main {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 34px 0 54px;
+}
+
+.hero {
+  text-align: center;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 18px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(18, 198, 244, 0.48);
+  border-radius: 999px;
+  color: var(--cyan);
+  background: rgba(18, 198, 244, 0.06);
+  font-size: 0.92rem;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+}
+
+.pill::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 12px rgba(18, 198, 244, 0.85);
+}
+
+h1 {
+  max-width: 900px;
+  margin: 0 auto 20px;
+  font-size: clamp(3rem, 8vw, 6.4rem);
+  line-height: 0.98;
+  font-weight: 950;
+  letter-spacing: -2.5px;
+  text-wrap: balance;
+}
+
+.highlight {
+  display: inline-block;
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 14px rgba(18, 198, 244, 0.20));
+}
+
+.subtitle {
+  max-width: 700px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  line-height: 1.65;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 62px;
+  padding: 0 32px;
+  margin-top: 30px;
+  border-radius: 13px;
+  background: var(--whatsapp);
+  color: #052410;
+  font-size: 1.08rem;
+  font-weight: 950;
+  text-decoration: none;
+  box-shadow: 0 14px 36px rgba(37, 211, 102, 0.24);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+
+.trust {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 22px;
+  margin-top: 24px;
+  color: #7f99ad;
+  font-size: 0.92rem;
+}
+
+.trust span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.trust span::before {
+  content: "✓";
+  color: var(--cyan);
+  font-weight: 900;
+}
+
+.legal-note {
+  max-width: 760px;
+  margin: 28px auto 0;
+  padding: 15px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(3, 36, 59, 0.54);
+  color: #7892a7;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+footer {
+  padding: 18px 0 26px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  color: #657e92;
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+footer a {
+  color: #7896ac;
+  text-decoration: none;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+  header {
+    padding-top: 18px;
+  }
+
+  .logo {
+    width: 190px;
+  }
+
+  main {
+    padding: 26px 0 38px;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 14vw, 4.3rem);
+    letter-spacing: -1.5px;
+  }
+
+  .cta {
+    width: 100%;
+    min-height: 58px;
+    padding: 0 18px;
+  }
+
+  .trust {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+/* Premium Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 10, 20, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  background: linear-gradient(180deg, #021a2e 0%, #00101f 100%);
+  border: 1px solid rgba(18, 198, 244, 0.4);
+  padding: 40px 32px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(18, 198, 244, 0.1);
+  color: var(--white);
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.8rem;
+  color: var(--white);
+  text-align: center;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+}
+
+.modal-subtitle {
+  text-align: center;
+  color: #a5c3d9;
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  left: 16px; /* RTL direction changes this to visual right/left depending on layout, but with dir=rtl left is top-left */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+[dir="rtl"] .modal-close {
+  left: 16px;
+  right: auto;
+}
+
+.modal-close:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #cde2f2;
+}
+
+.modal-form input {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(18, 198, 244, 0.25);
+  background: #000a14;
+  color: var(--white);
+  font-size: 1.05rem;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.modal-form input::placeholder {
+  color: #4a6b85;
+}
+
+.modal-form input:focus {
+  outline: none;
+  border-color: var(--cyan);
+  background: #011221;
+  box-shadow: 0 0 0 3px rgba(18, 198, 244, 0.2), inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.modal-submit {
+  width: 100%;
+  margin-top: 10px;
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(90deg, var(--whatsapp), #1ebe5a);
+  color: #052410;
+  font-size: 1.15rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+  text-shadow: 0 1px 2px rgba(255,255,255,0.3);
+}
+
+.modal-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.4);
+  filter: brightness(1.08);
+}
+
+.modal-submit:active {
+  transform: translateY(0);
+}
+
+.modal-submit:disabled {
+  background: #2a4154;
+  color: #7a94a8;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 32px 20px;
+    border-radius: 16px;
+  }
+  
+  .modal-content h2 {
+    font-size: 1.6rem;
+  }
+  
+  .modal-form input {
+    font-size: 1rem;
+    padding: 12px 14px;
+  }
+}
