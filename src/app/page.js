@@ -71,7 +71,7 @@ export default function Home() {
                 <span className="hidden md:inline">+</span>
                 <span><span className="md:hidden">+ </span><span dir="ltr">20</span> ספינים חינם</span>
               </span>
-              <span className="whitespace-nowrap">בהפקדה הראשונה</span>
+              <span>בהפקדה הראשונה</span>
             </h1>
 
             <p className="subtitle">
