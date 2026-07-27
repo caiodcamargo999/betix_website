@@ -65,8 +65,13 @@ export default function Home() {
 
             <h1>
               קבלו
-              <span className="highlight">30% בונוס + 20 ספינים חינם</span>
-              בהפקדה הראשונה
+              <br />
+              <span className="highlight flex flex-col md:flex-row items-center justify-center gap-1 md:gap-3 my-2 md:my-0">
+                <span><span dir="ltr">30%</span> בונוס</span>
+                <span className="hidden md:inline">+</span>
+                <span><span className="md:hidden">+ </span><span dir="ltr">20</span> ספינים חינם</span>
+              </span>
+              <span className="whitespace-nowrap">בהפקדה הראשונה</span>
             </h1>
 
             <p className="subtitle">
