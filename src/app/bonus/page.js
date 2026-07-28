@@ -27,6 +27,10 @@ export default function Home() {
     e.preventDefault();
     setIsLoading(true);
 
+    if (typeof window !== "undefined" && window.fbq) {
+      window.fbq('track', 'Contact');
+    }
+
     try {
       await fetch("/api/kommo", {
         method: "POST",

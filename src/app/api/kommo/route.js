@@ -1,4 +1,10 @@
 import { NextResponse } from "next/server";
+import crypto from "crypto";
+
+function hashData(data) {
+  if (!data) return undefined;
+  return crypto.createHash("sha256").update(data.trim().toLowerCase()).digest("hex");
+}
 
 export async function POST(request) {
   try {
@@ -67,6 +73,44 @@ export async function POST(request) {
 
     const responseData = await response.json();
     console.log("Kommo Lead created successfully:", responseData);
+
+    // Meta Conversions API setup
+    const metaToken = process.env.META_ACCESS_TOKEN;
+    const pixelId = process.env.META_PIXEL_ID;
+    
+    if (metaToken && pixelId) {
+      try {
+        const metaPayload = {
+          data: [
+            {
+              event_name: "Contact",
+              event_time: Math.floor(Date.now() / 1000),
+              action_source: "website",
+              user_data: {
+                em: [hashData(email)],
+                ph: [hashData(phone)],
+              },
+            }
+          ]
+        };
+
+        const metaResponse = await fetch(`https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${metaToken}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(metaPayload)
+        });
+
+        if (!metaResponse.ok) {
+          console.error("Meta CAPI Error:", await metaResponse.text());
+        } else {
+          console.log("Meta CAPI Event sent successfully");
+        }
+      } catch (metaError) {
+        console.error("Error sending event to Meta CAPI:", metaError);
+      }
+    }
 
     return NextResponse.json(
       { message: "Lead saved successfully" },
