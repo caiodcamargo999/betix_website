@@ -8,7 +8,7 @@ export default function Home() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
   const [isLoading, setIsLoading] = useState(false);
 
-  const whatsappUrl = "https://wa.me/972535372176?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9C%D7%A6%D7%95%D7%95%D7%AA%20%D7%A9%D7%9C%20Betix!%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%A8%D7%A6%D7%99%D7%AA%D7%99%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A7%D7%A6%D7%AA%20%D7%A2%D7%9C%20%D7%94%D7%91%D7%95%D7%A0%D7%95%D7%A1%20%D7%A9%D7%9C%2030%25%20%2B%2020%20%D7%A1%D7%A4%D7%99%D7%A0%D7%99%D7%9D%20%D7%97%D7%99%D7%A0%D7%9D%20%D7%91%D7%94%D7%A4%D7%A7%D7%93%D7%94%20%D7%A8%D7%90%D7%A9%D7%95%D7%A0%D7%94.%0A%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%9C%20%D7%92%D7%99%D7%9C%2018.";
+  const whatsappUrl = "https://wa.me/972535372176?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9C%D7%A6%D7%95%D7%95%D7%AA%20%D7%A9%D7%9C%20Betix!%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%A8%D7%A6%D7%99%D7%AA%D7%99%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A7%D7%A6%D7%AA%20%D7%A2%D7%9C%20%D7%94%D7%91%D7%95%D7%A0%D7%95%D7%A1%20%D7%A9%D7%9C%2040%25%20%2B%2020%20%D7%A1%D7%A4%D7%99%D7%A0%D7%99%D7%9D%20%D7%97%D7%99%D7%A0%D7%9D%20%D7%91%D7%94%D7%A4%D7%A7%D7%93%D7%94%20%D7%A8%D7%90%D7%A9%D7%95%D7%A0%D7%94.%0A%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%9C%20%D7%92%D7%99%D7%9C%2018.";
 
   const handleOpenModal = (e) => {
     e.preventDefault();
@@ -65,19 +65,18 @@ export default function Home() {
       <main>
         <div className="container">
           <section className="hero">
-            <div className="pill">VIP ACCESS · 30% BONUS</div>
+            <div className="pill">VIP ACCESS · 40% BONUS</div>
 
             <h1>
-              קבלו
+              בלאקג׳ק, רולטה, פוקר, הימורי ספורט
               <br />
               <span className="highlight flex flex-col md:flex-row items-center justify-center gap-1 md:gap-3 my-2 md:my-0">
-                <span><span dir="ltr">30%</span> בונוס</span>
+                <span>ואלפי משחקים במקום אחד!</span>
               </span>
-              <span>בהפקדה הראשונה</span>
             </h1>
 
             <p className="subtitle">
-              פנו לצוות BETIX בוואטסאפ, בדקו את תנאי ההטבה וקבלו ליווי אישי בתהליך ההצטרפות.
+              קבלו 40% בונוס על ההפקדה ראשונה, שירות אישי, תמיכה 24/7 וגישה לקבוצת VIP עם המבצעים הכי חזקים!
             </p>
 
             <a
