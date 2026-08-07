@@ -1,54 +1,9 @@
 "use client";
 
-import { useState } from "react";
-
 export default function Home() {
   const currentYear = new Date().getFullYear();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
-  const [isLoading, setIsLoading] = useState(false);
 
-  const whatsappUrl = "https://wa.me/972525372160?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9C%D7%A6%D7%95%D7%95%D7%AA%20%D7%A9%D7%9C%20Betix!%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%A8%D7%A6%D7%99%D7%AA%D7%99%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A7%D7%A6%D7%AA%20%D7%A2%D7%9C%20%D7%94%D7%91%D7%95%D7%A0%D7%95%D7%A1%20%D7%A9%D7%9C%2040%25%20%2B%2020%20%D7%A1%D7%A4%D7%99%D7%A0%D7%99%D7%9D%20%D7%97%D7%99%D7%A0%D7%9D%20%D7%91%D7%94%D7%A4%D7%A7%D7%93%D7%94%20%D7%A8%D7%90%D7%A9%D7%95%D7%A0%D7%94.%0A%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%9C%20%D7%92%D7%99%D7%9C%2018.";
-
-  const handleOpenModal = (e) => {
-    e.preventDefault();
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    if (typeof window !== "undefined" && window.fbq) {
-      window.fbq('track', 'Contact');
-    }
-
-    try {
-      await fetch("/api/kommo", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-      
-      // Navigate to whatsapp whether API succeeds or fails
-      window.open(whatsappUrl, "_blank");
-      setIsModalOpen(false);
-    } catch (error) {
-      console.error("Error submitting lead:", error);
-      window.open(whatsappUrl, "_blank");
-      setIsModalOpen(false);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const whatsappUrl = "https://wa.me/972559340547?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9C%D7%A6%D7%95%D7%95%D7%AA%20%D7%A9%D7%9C%20Betix!%0A%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%95%D7%A8%D7%A6%D7%99%D7%AA%D7%99%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A7%D7%A6%D7%AA%20%D7%A2%D7%9C%20%D7%94%D7%91%D7%95%D7%A0%D7%95%D7%A1%20%D7%A9%D7%9C%2040%25%20%2B%2020%20%D7%A1%D7%A4%D7%99%D7%A0%D7%99%D7%9D%20%D7%97%D7%99%D7%A0%D7%9D%20%D7%91%D7%94%D7%A4%D7%A7%D7%93%D7%94%20%D7%A8%D7%90%D7%A9%D7%95%D7%A0%D7%94.%0A%D7%90%D7%A0%D7%99%20%D7%9E%D7%A2%D7%9C%20%D7%92%D7%99%D7%9C%2018.";
 
   return (
     <div className="page">
@@ -81,8 +36,14 @@ export default function Home() {
 
             <a
               className="cta"
-              href="#"
-              onClick={handleOpenModal}
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                if (typeof window !== "undefined" && window.fbq) {
+                  window.fbq('track', 'Contact');
+                }
+              }}
             >
               בקשו את הבונוס בוואטסאפ
             </a>
@@ -109,58 +70,6 @@ export default function Home() {
           </div>
         </div>
       </footer>
-
-      {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content" dir="rtl">
-            <button className="modal-close" onClick={handleCloseModal}>
-              &times;
-            </button>
-            <h2>קבלת ההטבה</h2>
-            <p className="modal-subtitle">אנא מלאו את הפרטים ונציג יחזור אליכם בהקדם.</p>
-            <form onSubmit={handleSubmit} className="modal-form">
-              <div className="form-group">
-                <label>שם מלא</label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="הכנס שם מלא"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>אימייל</label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="name@example.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  dir="ltr"
-                />
-              </div>
-              <div className="form-group">
-                <label>טלפון</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  placeholder="050-0000000"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                  dir="ltr"
-                />
-              </div>
-              <button type="submit" className="cta modal-submit" disabled={isLoading}>
-                {isLoading ? 'שולח...' : 'שליחה למעבר לוואטסאפ'}
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
