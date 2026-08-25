@@ -19,23 +19,69 @@ export default function Home() {
 
       <main>
         <div className="container">
-          <section className="hero">
-            <div className="pill">VIP ACCESS · 40% BONUS</div>
-
-            <h1>
-              בלאקג׳ק, רולטה, פוקר, הימורי ספורט
-              <br />
-              <span className="highlight flex flex-col md:flex-row items-center justify-center gap-1 md:gap-3 my-2 md:my-0">
-                <span>ואלפי משחקים במקום אחד!</span>
-              </span>
+          {/* 1. TOPO / HEADLINE PRINCIPAL */}
+          <section className="hero-section">
+            <h1 className="hero-title">
+              הכל במקום אחד. לשחק בראש שקט.
             </h1>
+            <div className="hero-subtitle">
+              קזינו, ספורט ואקשן — 24/7
+            </div>
+          </section>
 
-            <p className="subtitle">
-              קבלו 40% בונוס על ההפקדה ראשונה, שירות אישי, תמיכה 24/7 וגישה לקבוצת VIP עם המבצעים הכי חזקים!
+          {/* 2. DESCRIÇÃO DOS PRODUTOS */}
+          <div className="products-box">
+            קזינו מלא, קזינו לייב, ספורט, סלוטים, בלאקג'ק, פוקר ועוד — הכל במקום אחד.
+          </div>
+
+          {/* 3. DESTAQUE DA OFERTA DE BOAS-VINDAS */}
+          <div className="offer-card">
+            <div className="offer-badge">🎁 הטבת הצטרפות</div>
+            <div className="offer-main-title">
+              40% בונוס על ההפקדה הראשונה + 20 סיבובים חינם בקזינו
+            </div>
+            <div className="offer-divider"></div>
+            <p className="offer-cashback-lead">בנוסף, אם מפסידים במהלך השבוע —</p>
+            <p className="offer-cashback-val">מקבלים 15% החזר על ההפסדים, כל שבוע.</p>
+          </div>
+
+          {/* 4. PROMOÇÕES */}
+          <div className="promo-card">
+            <div className="promo-title">🔥 מבצעים כל יום</div>
+            <p className="promo-text">
+              בונוסים, הטבות והגרלות חדשות לאורך כל השבוע.
             </p>
+          </div>
 
+          {/* 5. BENEFÍCIOS / POR QUE ESCOLHER A BETIX */}
+          <div className="benefits-section">
+            <div className="benefits-title">⚡ למה Betix?</div>
+            <div className="benefits-grid">
+              <div className="benefit-item">
+                <span className="benefit-check">✓</span>
+                <span>תמיכה אישית 24/7</span>
+              </div>
+              <div className="benefit-item">
+                <span className="benefit-check">✓</span>
+                <span>תשלומים מהירים</span>
+              </div>
+              <div className="benefit-item">
+                <span className="benefit-check">✓</span>
+                <span>קזינו וספורט במקום אחד</span>
+              </div>
+              <div className="benefit-item">
+                <span className="benefit-check">✓</span>
+                <span>אמינות, ביטחון ודיסקרטיות</span>
+              </div>
+            </div>
+          </div>
+
+          {/* 6. CTA FINAL */}
+          <div className="cta-section">
+            <div className="cta-title">מוכנים להתחיל?</div>
+            <div className="cta-subtitle">הצטרפו עכשיו וקבלו את ההטבה שלכם</div>
             <a
-              className="cta"
+              className="cta-btn"
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -45,26 +91,22 @@ export default function Home() {
                 }
               }}
             >
-              בקשו את הבונוס בוואטסאפ
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+              <span>לחצו כאן להצטרפות ב-WhatsApp</span>
             </a>
-
-            <div className="trust">
-              <span>שירות אישי</span>
-              <span>תמיכה זמינה 24/7</span>
-              <span>מיועד לבני 18 ומעלה</span>
-            </div>
-
-            <div className="legal-note">
-              ההטבה כפופה לזכאות, לאימות החשבון ולתנאי המבצע.
-              אין הבטחה לזכייה או לרווח. שחקו באחריות.
-            </div>
-          </section>
+          </div>
         </div>
       </main>
 
+      {/* 7. RODAPÉ / AVISO */}
       <footer>
-        <div className="container" style={{ display: 'flex', justifyContent: 'center' }}>
-          <div>
+        <div className="container">
+          <div className="footer-disclaimer">
+            18+ | בכפוף לתנאים | הימורים באחריות
+          </div>
+          <div className="footer-copy">
             © {currentYear} BETIX · כל הזכויות שמורות
           </div>
         </div>
