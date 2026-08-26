@@ -198,6 +198,11 @@ h1.hero-title {
   text-shadow: 0 0 12px rgba(37, 211, 102, 0.35);
 }
 
+.offer-cta-btn {
+  margin-top: 18px;
+  width: 100%;
+}
+
 /* 4. PROMOÇÕES */
 .promo-card {
   background: rgba(3, 27, 48, 0.55);
