@@ -4,7 +4,7 @@ export default function Home() {
   const currentYear = new Date().getFullYear();
 
   const whatsappMessage = "שלום, אני רוצה לקבל את ההטבה של 40% + 20 ספינים 🎁";
-  const whatsappUrl = `https://wa.me/972559340526?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappUrl = `https://wa.me/972536995542?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <div className="page">
