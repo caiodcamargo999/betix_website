@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-TGX6SFQ4');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1634810871771318');
+    fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="BETIX - הכל במקום אחד. לשחק בראש שקט.">
@@ -392,6 +415,14 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGX6SFQ4"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1634810871771318&ev=PageView&noscript=1"
+  /></noscript>
+
   <div class="page">
     <header>
       <div class="container">
@@ -508,6 +539,70 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return undefined;
+    }
+
+    function trackWhatsAppClick(buttonLocation) {
+      const eventId = 'wa_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+      
+      // 1. Meta Pixel
+      if (typeof window.fbq === 'function') {
+        window.fbq('track', 'Contact', {
+          content_name: 'WhatsApp Lead',
+          button_location: buttonLocation
+        }, { eventID: eventId });
+      }
+
+      // 2. GTM / DataLayer
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'Contact',
+        event_category: 'Engagement',
+        event_action: 'WhatsApp Click',
+        event_label: buttonLocation,
+        eventId: eventId
+      });
+
+      // 3. Meta Conversions API (CAPI)
+      try {
+        const fbp = getCookie('_fbp');
+        const fbc = getCookie('_fbc');
+        const urlParams = new URLSearchParams(window.location.search);
+        const fbclid = urlParams.get('fbclid');
+        const finalFbc = fbc || (fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined);
+
+        const payload = JSON.stringify({
+          eventId: eventId,
+          eventSourceUrl: window.location.href,
+          fbp: fbp,
+          fbc: finalFbc
+        });
+
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon('/api/capi', new Blob([payload], { type: 'application/json' }));
+        } else {
+          fetch('/api/capi', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: payload,
+            keepalive: true
+          }).catch(function(err) { console.error(err); });
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    document.querySelectorAll('.cta-btn').forEach(function(btn, idx) {
+      btn.addEventListener('click', function() {
+        trackWhatsAppClick(idx === 0 ? 'offer_card_cta' : 'bottom_section_cta');
+      });
+    });
   </script>
 </body>
 </html>

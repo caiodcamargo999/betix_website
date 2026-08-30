@@ -2,7 +2,14 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
-    const body = await request.json().catch(() => ({}));
+    let body = {};
+    const text = await request.text().catch(() => "");
+    try {
+      body = text ? JSON.parse(text) : {};
+    } catch {
+      body = {};
+    }
+
     const { eventId, eventSourceUrl, fbp, fbc } = body;
 
     const metaToken = process.env.META_ACCESS_TOKEN;
@@ -10,7 +17,9 @@ export async function POST(request) {
 
     // Extract client IP & User Agent from request
     const forwardedFor = request.headers.get("x-forwarded-for");
-    const clientIp = forwardedFor ? forwardedFor.split(",")[0].trim() : request.headers.get("x-real-ip") || undefined;
+    const clientIp = forwardedFor
+      ? forwardedFor.split(",")[0].trim()
+      : request.headers.get("x-real-ip") || undefined;
     const userAgent = request.headers.get("user-agent") || undefined;
 
     if (!metaToken) {
@@ -22,10 +31,19 @@ export async function POST(request) {
     }
 
     const userData = {};
-    if (clientIp) userData.client_ip_address = clientIp;
-    if (userAgent) userData.client_user_agent = userAgent;
-    if (fbp) userData.fbp = fbp;
-    if (fbc) userData.fbc = fbc;
+    // Only pass client_ip_address if it's not localhost/private loopback
+    if (clientIp && !clientIp.startsWith("::") && clientIp !== "127.0.0.1") {
+      userData.client_ip_address = clientIp;
+    }
+    if (userAgent) {
+      userData.client_user_agent = userAgent;
+    }
+    if (fbp) {
+      userData.fbp = fbp;
+    }
+    if (fbc) {
+      userData.fbc = fbc;
+    }
 
     const metaPayload = {
       data: [
